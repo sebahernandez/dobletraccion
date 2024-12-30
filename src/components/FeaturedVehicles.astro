@@ -1,0 +1,110 @@
+---
+const vehicles = [
+  {
+    id: 1,
+    name: "FORD F150 XLT DCAB",
+    price: "44,490,000",
+    year: 2021,
+    image: "https://placehold.co/400x300?text=FORD+F150",
+    features: ["Automático", "Diesel", "4x4"]
+  },
+  {
+    id: 2,
+    name: "RAM 2500 LARAMIE",
+    price: "52,990,000", 
+    year: 2023,
+    image: "https://placehold.co/400x300?text=RAM+2500",
+    features: ["Automático", "Diesel", "4x4"]
+  },
+  {
+    id: 3,
+    name: "TOYOTA TACOMA",
+    price: "38,990,000",
+    year: 2022,
+    image: "https://placehold.co/400x300?text=TOYOTA+TACOMA",
+    features: ["Automático", "Bencina", "4x4"]
+  },
+  {
+    id: 4,
+    name: "JEEP WRANGLER",
+    price: "45,990,000",
+    year: 2020,
+    image: "https://placehold.co/400x300?text=JEEP+WRANGLER",
+    features: ["Automático", "Bencina", "4x4"]
+  }
+];
+---
+<section class="py-16 bg-black text-white">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center mb-12">Destacados</h2>
+    <p class="text-center mb-8 text-gray-300">Tenemos una amplia variedad de vehículos usados y de todas las marcas</p>
+    
+    <div class="vehicles-carousel relative overflow-hidden">
+      <div class="vehicles-track flex transition-transform duration-500">
+        {[...vehicles, ...vehicles].map(vehicle => (
+          <div class="vehicle-slide w-full md:w-1/2 lg:w-1/4 flex-shrink-0 px-3">
+            <div class="bg-gray-900 rounded-lg shadow-lg overflow-hidden h-full border border-gray-800">
+              <img src={vehicle.image} alt={vehicle.name} class="w-full h-48 object-cover"/>
+              <div class="p-4">
+                <span class="text-sm text-gray-400">{vehicle.year}</span>
+                <h3 class="font-bold text-xl mb-2 text-white">{vehicle.name}</h3>
+                <p class="text-2xl font-bold text-yellow-400 mb-4">${vehicle.price}</p>
+                <div class="flex flex-wrap gap-2">
+                  {vehicle.features.map(feature => (
+                    <span class="bg-gray-800 px-2 py-1 rounded-full text-sm text-gray-300">{feature}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .vehicles-carousel {
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  }
+  
+  @media (max-width: 768px) {
+    .vehicle-slide {
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  function setupVehiclesCarousel() {
+    const track = document.querySelector('.vehicles-track');
+    const slides = document.querySelectorAll('.vehicle-slide');
+    const slideCount = slides.length / 2;
+    let currentIndex = 0;
+    
+    function updateSlidePosition() {
+      const slideWidth = slides[0].offsetWidth;
+      const offset = -currentIndex * slideWidth;
+      track.style.transform = `translateX(${offset}px)`;
+    }
+    
+    function moveToNextSlide() {
+      currentIndex = (currentIndex + 1) % slideCount;
+      
+      if (currentIndex === 0) {
+        track.style.transition = 'none';
+        updateSlidePosition();
+        track.offsetHeight;
+        track.style.transition = 'transform 500ms ease';
+      } else {
+        updateSlidePosition();
+      }
+    }
+
+    updateSlidePosition();
+    setInterval(moveToNextSlide, 5000);
+    window.addEventListener('resize', updateSlidePosition);
+  }
+
+  document.addEventListener('astro:page-load', setupVehiclesCarousel);
+</script>
