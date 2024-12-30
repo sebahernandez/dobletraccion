@@ -1,0 +1,95 @@
+---
+import { getCarsByIds } from "../../../lib/fetchVehicles";
+import Layout from "../../../layouts/Layout.astro";
+import Header from "../../../components/Header.astro";
+import Footer from "../../../components/Footer.astro";
+
+import {formatPrice} from "../../../helpers/formatHelpers"
+
+// Capturamos el `id` desde los parámetros de la URL
+const { id } = Astro.params || {};
+
+// Llamamos a `getCarsByIds` para obtener el vehículo correspondiente
+const response = await getCarsByIds({ id: id || '' });
+
+// Si no se encontró el vehículo, lanzamos un error
+if (!response || !response.status) {
+  throw new Error(`No se encontró el vehículo con ID: ${id}`);
+}
+// Obtenemos los datos del vehículo
+const vehicle = response.data; // Datos del vehículo
+
+// Datos para SEO
+const seoData = {
+  title: `${vehicle.name} - Detalles`,
+  description: `Compra el ${vehicle.name}, un vehículo con ${vehicle.miles} km, transmisión ${vehicle.transmission} y motor ${vehicle.fuelType}.`,
+  image: vehicle.imageUrl,
+};
+// Formateamos el precio
+const formattedPrice = formatPrice(vehicle.price);
+---
+
+<Layout {...seoData}>
+  <Header />
+  <section class="bg-gray-800">
+    <div class="container mx-auto p-6 ">
+      <!-- Título y Precio -->
+      <div class="text-center mb-8">
+        <h1 class="text-4xl font-extrabold text-gray-300">{vehicle.name}</h1>
+        <p class="text-2xl text-yellow-500 font-bold mt-2">Precio: {formattedPrice}</p>
+      </div>
+  
+      <!-- Contenedor principal -->
+      <div class="flex flex-col lg:flex-row gap-8">
+        <!-- Galería de imágenes -->
+        <div class="flex-1">
+          <img
+            src={vehicle.imageUrl}
+            alt={vehicle.name}
+            class="rounded-lg shadow-lg w-full object-cover mb-4"
+          />
+          <div class="grid grid-cols-3 gap-2">
+            {vehicle.imageGallery.map((img, index) => (
+              <img
+                src={img.imageUrl}
+                alt={`${vehicle.name} - ${index + 1}`}
+                class="rounded-lg shadow-md hover:shadow-lg object-cover cursor-pointer"
+              />
+            ))}
+          </div>
+        </div>
+  
+        <!-- Especificaciones y detalles -->
+        <div class="flex-1 bg-gray-50 rounded-lg shadow-lg p-6">
+          <h2 class="text-2xl font-semibold text-gray-800 mb-4">Especificaciones</h2>
+          <ul class="space-y-2">
+            <li class="text-lg text-gray-600">
+              <strong class="text-gray-800">Kilometraje:</strong> {vehicle.miles} km
+            </li>
+            <li class="text-lg text-gray-600">
+              <strong class="text-gray-800">Tipo de Combustible:</strong> {vehicle.fuelType}
+            </li>
+            <li class="text-lg text-gray-600">
+              <strong class="text-gray-800">Transmisión:</strong> {vehicle.transmission}
+            </li>
+            <li class="text-lg text-gray-600">
+              <strong class="text-gray-800">Ubicación:</strong> {vehicle.location}
+            </li>
+          </ul>
+  
+          <!-- Llamada a la acción -->
+          <div class="mt-6">
+            <a
+              href="/contacto"
+              class="inline-block px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition"
+            >
+              Contactar Vendedor
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <Footer />
+</Layout>
