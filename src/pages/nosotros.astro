@@ -2,71 +2,30 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Timeline from '../components/Timeline.astro';
+import Arrow from '../components/buttons/arrow.astro';
 ---
 
 <Layout title="Nosotros - Doble Tracción">
   <Header />
+  <div class="w-full h-[500px] overflow-hidden">
+    <img src="images/banners/nosotros-banner.jpg" alt="nosotros" class="w-full h-full object-cover">
+ </div>
+  <Timeline />
+  <div class="w-full h-96 bg-cover bg-center flex justify-center items-center flex-col" style="background-image: url('images/banners/nosotros-oficina.jpg');">
+  <div class="flex justify-center items-center gap-2 flex-col md:flex-row ">
+    <img src="/images/logo/icon-logo.png" alt="logo" class="w-24">
+    <h2 class="text-4xl text-yellow-400 font-bold">VER STOCK COMPLETO</h2>
+    <div>
+     <Arrow />
+    </div>
+  </div>
+    <p class="text-center text-white py-2">
+      Comprometidos con ofrecer soluciones automotrices integrales, basadas en experiencia, innovación y pasión por la excelencia.
+    </p>
+  </div>
+ 
   
-  <main>
-    <section class="py-20 bg-gray-100">
-      <div class="container mx-auto px-4">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h1 class="text-4xl font-bold mb-6">Nuestra Historia</h1>
-            <p class="text-lg mb-4 text-gray-700">
-              Desde 2010, Doble Tracción ha sido líder en el mercado de vehículos 4x4 en Chile. 
-              Comenzamos como un pequeño emprendimiento familiar y hoy somos referentes en el sector, 
-              con más de 1,000 vehículos vendidos y una base de clientes satisfechos que confían en 
-              nuestra experiencia y profesionalismo.
-            </p>
-            <p class="text-lg mb-4 text-gray-700">
-              Nuestra pasión por los vehículos todo terreno nos ha llevado a especializarnos en las 
-              mejores marcas del mercado, ofreciendo siempre unidades seleccionadas y verificadas 
-              que cumplen con los más altos estándares de calidad.
-            </p>
-            <p class="text-lg text-gray-700">
-              En Doble Tracción no solo vendemos vehículos, creamos relaciones duraderas con 
-              nuestros clientes, asesorándolos en cada paso del proceso de compra y venta, 
-              garantizando siempre la mejor experiencia.
-            </p>
-          </div>
-          <div>
-            <img 
-              src="https://placehold.co/800x600?text=NOSOTROS" 
-              alt="Equipo Doble Tracción" 
-              class="rounded-lg shadow-xl w-full"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="py-16 bg-black text-white">
-      <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center mb-12">Nuestros Valores</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="text-center">
-            <h3 class="text-xl font-bold mb-4">Excelencia</h3>
-            <p class="text-gray-300">
-              Nos esforzamos por superar las expectativas en cada interacción con nuestros clientes.
-            </p>
-          </div>
-          <div class="text-center">
-            <h3 class="text-xl font-bold mb-4">Transparencia</h3>
-            <p class="text-gray-300">
-              Creemos en la honestidad y claridad en todas nuestras operaciones comerciales.
-            </p>
-          </div>
-          <div class="text-center">
-            <h3 class="text-xl font-bold mb-4">Compromiso</h3>
-            <p class="text-gray-300">
-              Dedicados a ofrecer el mejor servicio y asesoramiento en cada etapa.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
 
   <Footer />
 </Layout>
