@@ -11,21 +11,23 @@ export function VehicleCard({ vehicle }: VehicleCardProps) {
 
   return (
     <div className="bg-gray-900 rounded-lg shadow-lg overflow-hidden h-full border border-gray-800">
-      <img
-        src={vehicle.imageUrl}
-        alt={vehicle.name}
-        className="w-full h-48 object-cover"
-      />
+      <a href={`/vehiculos/${formatNameForURL(vehicle.name)}/${vehicle.id}`}>
+        <img
+          src={vehicle.imageUrl}
+          alt={vehicle.name}
+          className="w-full h-48 object-cover"
+        />
+      </a>
       <div className="p-4">
         {/* <span className="text-sm text-gray-400">{vehicle.year}</span> */}
-        <h3 className="font-bold text-xl mb-2 text-white">
+        <h3 className="font-bold text-sm mb-2 text-white">
           <a
             href={`/vehiculos/${formatNameForURL(vehicle.name)}/${vehicle.id}`}
           >
             {vehicle.name}
           </a>
         </h3>
-        <p className="text-2xl font-bold text-yellow-400 mb-4">
+        <p className="text-xl font-bold text-yellow-400 mb-4">
           {formattedPrice}
         </p>
         <div className="flex flex-wrap gap-5">

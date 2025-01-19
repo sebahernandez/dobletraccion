@@ -31,7 +31,7 @@ export const getCarsByIds = async ({ id }: { id: string }) => {
 };
 
 // Función existente para obtener autos destacados (no modificada)
-export const getCars = async () => {
+export const getFeaturedCars = async () => {
   const token = import.meta.env.PUBLIC_TOKEN;
 
   const res = await fetch("https://venpu.cl/api/cars/destacados", {
@@ -47,6 +47,7 @@ export const getCars = async () => {
   }
 
   const { data: autos } = (await res.json()) as APICars;
+  console.log("Autos destacados:", autos);
   return autos;
 };
 

@@ -1,10 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
-import FeaturedVehicles from '../components/FeaturedVehicles.astro';
 import Team from '../components/Team.astro';
 import Testimonials from '../components/Testimonials.astro';
 import Footer from '../components/Footer.astro';
+import {FeaturedCars} from '../components/featured-car/FeaturedCars'
 ---
 
 <Layout title="Doble Tracción - Expertos en 4x4">
@@ -44,9 +44,7 @@ import Footer from '../components/Footer.astro';
         </div>
       </div>
     </section>
-
-    <FeaturedVehicles />
-
+     <FeaturedCars client:load />
     <section>
       <div class="mx-auto">
       <img src="/images/banners/banner-sucursal.webp" alt="nueva sucursal" class="w-full" />
