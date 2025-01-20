@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay } from "swiper/modules"; // Importa los módulos necesarios
+import { Navigation, Autoplay } from "swiper/modules"; // Importa los módulos necesarios
 import { getFeaturedCars } from "../../lib/fetchVehicles";
 import { VehicleCard } from "../catalog/VehiculeCard";
 import { SpinnerCircular } from "spinners-react/lib/esm/SpinnerCircular";
@@ -45,13 +45,15 @@ export const FeaturedCars: React.FC = () => {
         </p>
 
         {loading ? (
-          <SpinnerCircular
-            size={69}
-            thickness={136}
-            speed={114}
-            color="rgba(172, 134, 57, 1)"
-            secondaryColor="rgba(172, 127, 57, 0.44)"
-          />
+          <div className="flex justify-center items-center h-96">
+            <SpinnerCircular
+              size={69}
+              thickness={136}
+              speed={114}
+              color="rgba(172, 134, 57, 1)"
+              secondaryColor="rgba(172, 127, 57, 0.44)"
+            />
+          </div>
         ) : (
           <Swiper
             modules={[Navigation, Autoplay]} // Registra los módulos
@@ -63,6 +65,7 @@ export const FeaturedCars: React.FC = () => {
               delay: 3000, // Tiempo entre cada cambio de diapositiva (en ms)
               disableOnInteraction: false, // Continúa el autoplay incluso si el usuario interactúa
             }}
+            loop={true} // Deshabilita el bucle
             breakpoints={{
               0: {
                 slidesPerView: 1,

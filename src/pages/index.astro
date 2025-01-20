@@ -87,3 +87,21 @@ import {FeaturedCars} from '../components/featured-car/FeaturedCars'
 
   <Footer />
 </Layout>
+
+<style is:global >
+   /* Ocultar flechas en pantallas pequeñas */
+   .swiper-button-prev,
+  .swiper-button-next {
+    display: none;
+  }
+  .swiper-button-prev, .swiper-button-next{
+    color: white;
+  }
+  @media (min-width: 768px) {
+    /* Mostrar flechas en pantallas medianas o más grandes */
+    .swiper-button-prev,
+    .swiper-button-next {
+      display: block;
+    }
+  }
+</style>
