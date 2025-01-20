@@ -19,7 +19,6 @@ export function VehicleCatalog() {
   const fetchData = async () => {
     try {
       const autos = await fetchAllVehicles();
-      console.log("Fetched autos:", autos);
       setVehicles(autos);
       setLoading(false);
     } catch (error) {

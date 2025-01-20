@@ -1,5 +1,6 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
 interface Props {
 	title: string;
 }
@@ -16,31 +17,11 @@ const { title } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
-		<ViewTransitions />
+
 	</head>
 	<body>
+        <Header/>
 		<slot />
+		<Footer />
 	</body>
 </html>
-
-<style is:global>
-	:root {
-		--accent: 252, 211, 77;
-		--accent-light: 253, 230, 138;
-		--accent-dark: 217, 119, 6;
-	}
-	
-	html {
-		font-family: system-ui, sans-serif;
-		scroll-behavior: smooth;
-	}
-	
-	body {
-		margin: 0;
-		padding: 0;
-	}
-
-	@tailwind base;
-	@tailwind components;
-	@tailwind utilities;
-</style>

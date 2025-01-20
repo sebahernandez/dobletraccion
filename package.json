@@ -10,10 +10,14 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/react": "^4.1.5",
-    "@astrojs/tailwind": "^5.1.4",
+    "@astrojs/react": "^4.1.6",
+    "@astrojs/tailwind": "^5.1.5",
     "@astrojs/vercel": "^8.0.2",
-    "astro": "^5.1.7",
+    "@types/react": "^19.0.7",
+    "@types/react-dom": "^19.0.3",
+    "astro": "^5.1.8",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "react-icons": "^5.4.0",
     "react-spinners": "^0.15.0",
     "spinners-react": "^1.0.10",

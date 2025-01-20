@@ -47,7 +47,6 @@ export const getFeaturedCars = async () => {
   }
 
   const { data: autos } = (await res.json()) as APICars;
-  console.log("Autos destacados:", autos);
   return autos;
 };
 
@@ -74,7 +73,6 @@ export const getAllCarIds = async (): Promise<number[]> => {
 export const fetchAllVehicles = async (): Promise<Datum[]> => {
   const url = "https://venpu.cl/api/cars/stock";
   const token = import.meta.env.PUBLIC_TOKEN;
-  console.log("Using token:", token);
 
   const res = await fetch(url, {
     method: "GET",
